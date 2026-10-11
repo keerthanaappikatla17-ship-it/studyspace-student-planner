@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Task | StudySpace</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 25px;
+            background: #f5f6fc;
+            color: #252744;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+        .card {
+            max-width: 500px;
+            margin: 45px auto;
+            padding: 30px;
+            background: white;
+            border: 1px solid #ececf4;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px #2527440d;
+        }
+        h1 { margin-top: 0; font-size: 26px; }
+        p { color: #777b95; line-height: 1.5; }
+        label {
+            display: block;
+            margin: 20px 0 7px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dedfec;
+            border-radius: 10px;
+            font: inherit;
+            background: white;
+        }
+        .save, .back {
+            display: inline-block;
+            padding: 12px 16px;
+            border: 0;
+            border-radius: 10px;
+            text-decoration: none;
+            font: inherit;
+            cursor: pointer;
+            margin-top: 24px;
+        }
+        .save {
+            background: #6750d8;
+            color: white;
+            font-weight: 700;
+        }
+        .back {
+            background: #f0eef9;
+            color: #5543b1;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <h1>Edit your task ✏️</h1>
+        <p>Update your study task details below.</p>
+
+        <form method="POST">
+            <label for="title">Task name</label>
+            <input id="title" name="title" type="text"
+                   value="{{ task['title'] }}" maxlength="200" required>
+
+            <label for="deadline">Deadline</label>
+            <input id="deadline" name="deadline" type="date"
+                   value="{{ task['deadline'] }}">
+
+            <label for="priority">Priority</label>
+            <select id="priority" name="priority">
+                <option value="High" {{ 'selected' if task['priority'] == 'High' else '' }}>High priority</option>
+                <option value="Medium" {{ 'selected' if task['priority'] == 'Medium' else '' }}>Medium priority</option>
+                <option value="Low" {{ 'selected' if task['priority'] == 'Low' else '' }}>Low priority</option>
+            </select>
+
+            <button class="save" type="submit">Save changes</button>
+            <a class="back" href="/">Cancel</a>
+        </form>
+    </main>
+</body>
+</html>
